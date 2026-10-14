@@ -1,0 +1,5 @@
+material,altitude_m,speed_m_s,wing_area_m2,aspect_ratio,aircraft_mass_excl_spars_kg,spar_height_m,load_factor,route_distance_km
+Aluminium 2024-T3,1500,65,16,8,900,0.24,2.5,100
+Aluminium 7075-T6,1500,65,16,8,900,0.20,2.5,100
+Titanium Ti-6Al-4V,2500,75,18,9,950,0.24,2.5,180
+Steel 4130,900,55,14,7.5,800,0.30,2.0,90
