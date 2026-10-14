@@ -13,7 +13,7 @@ The `tests/test_app.py` Streamlit AppTest suite adds three UI smoke checks:
 2. Changing airspeed updates the displayed Mach number.
 3. Switching materials updates the displayed spar mass.
 
-**Verification status (14 October 2026):** GitHub Actions completed successfully on commit `c6cbd84` on both Python 3.11 and 3.13. The workflow job log reports **39 passed tests**, consisting of 36 existing numerical/analysis checks and three new Streamlit UI smoke tests. This confirms execution on hosted CI for that commit; newer changes must be verified by their own workflow runs. GitHub Actions checks Streamlit behaviour programmatically, not pixel-level mobile layout. Mobile-browser appearance and CSV uploads still require separate manual checks.
+**Clean-repository baseline (14 October 2026):** After publishing a new history with one privacy-protected root commit (`5623e4ee1e2a42979847c98ecba44ab6502f1dd6`), GitHub Actions completed [run 38634871313](https://github.com/chibuzorvictorobih-web/AeroMAT-Lab/actions/runs/38634871313) successfully on Python 3.11 and Python 3.13. The recorded job logs report **39 passed** on each Python version: 36 numerical/analysis checks and three Streamlit AppTest smoke tests. This verifies that repository version, not subsequent untested edits. Automated AppTest checks do not independently establish responsive/mobile appearance or CSV-file-upload behaviour.
 
 **How to verify:** Visit the repository's **Actions → Software quality checks** page. A green result for both Python versions is evidence that CI passed on that commit. If no workflow appears, inspect repository Actions settings and refresh; do not presume success. Upload `data/example_scenarios.csv` to the deployed Batch CSV tab and confirm that successful scenario rows and CSV export work.
 
@@ -39,7 +39,7 @@ The `tests/test_app.py` Streamlit AppTest suite adds three UI smoke checks:
 
 ## Runtime/browser verification
 
-The application passed Python syntax checks in the preparation environment. It has also been launched successfully in the project owner's local Streamlit browser, where the dashboard and numerical result cards rendered. Full interactive browser smoke tests (editing input values, every tab and CSV processing) have **not yet been independently confirmed**. Follow `docs/DEPLOYMENT.md` to complete those checks before publicly sharing the app. A GitHub Actions workflow is included; check the latest run result rather than assuming the workflow has executed.
+The project owner confirmed on 14 October 2026 that the public Streamlit website opens and runs following the clean repository release. The CI smoke tests exercise application startup and reactive inputs but do not render a real mobile browser. Manual mobile-layout and batch-CSV upload checks remain separate acceptance tasks. See `docs/DEPLOYMENT.md` for a concise verification checklist.
 
 ## Engineering validation still required
 

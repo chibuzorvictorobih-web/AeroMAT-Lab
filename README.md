@@ -40,13 +40,13 @@ All editable design inputs appear in the Streamlit sidebar. The material propert
 |---|---|---|
 | 1. Define the engineering problem | Coupled system boundaries, modelling assumptions and input/output definitions | Complete |
 | 2. Build the physics engine | Atmosphere, drag, beam, thermal, energy and carbon modules | Complete |
-| 3. Create the interactive app | Responsive Streamlit dashboard, custom material, comparison and CSV exports | Complete in code; hosting remains user-controlled |
+| 3. Create the interactive app | Responsive Streamlit dashboard, custom material, comparison and CSV exports | Complete; online app verified by the project owner |
 | 4. Add design exploration and verification | Parametric sweep, feasibility filtering, automated regression tests, CI workflow | Complete |
-| 5. Package and prepare public deployment | README, example CSV, methodology, deployment instructions, repository archive | Complete; GitHub upload and Streamlit deployment require your account |
+| 5. Package and prepare public deployment | README, example CSV, methodology, deployment instructions, repository archive | Complete; GitHub repository and online app are published |
 
 ## Install and run on Windows
 
-1. Download/unzip the project archive and open the resulting `aeromat-lab` folder in VS Code.
+1. Clone the published GitHub repository (or download its ZIP), then open the `AeroMAT-Lab` folder in VS Code.
 2. Open **Terminal → New Terminal** in VS Code.
 3. If Python 3.11 (or 3.10+) is installed, run:
 
@@ -66,7 +66,7 @@ Run these commands individually. On Windows, use the `python` command if `py` is
 
 ## Publish it
 
-Follow **[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)** for GitHub and Streamlit Community Cloud. In brief, create an empty GitHub repository, commit the extracted project folder contents, push to `main`, then configure a Streamlit Cloud app with entrypoint `app.py`.
+The [public repository](https://github.com/chibuzorvictorobih-web/AeroMAT-Lab) and [live calculator](https://aeromat-lab.streamlit.app/) are already published. See **[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)** for updating the existing project or checking its deployment. Use the cleaned local clone for future commits, not an older copy of the repository history.
 
 ## Numerical credibility and limits
 
@@ -94,7 +94,7 @@ The project contains independent regression, scaling, input-validation and batch
 ## Repo contents
 
 ```text
-aeromat-lab/
+AeroMAT-Lab/
 ├── app.py                      # Streamlit UI
 ├── aeromat/
 │   ├── __init__.py
@@ -110,7 +110,6 @@ aeromat-lab/
 │   ├── DEPLOYMENT.md
 │   └── TEST_REPORT.md
 ├── .github/workflows/ci.yml  # Continuous integration
-├── .streamlit/config.toml
 ├── requirements.txt
 ├── .gitignore
 └── LICENSE

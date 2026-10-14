@@ -1,6 +1,6 @@
 # Five-task development record
 
-The tasks are completed sequentially in the supplied source archive; the user is not required to retype code.
+All five development tasks are implemented in the public repository. The source files are ready to run locally or through the deployed application.
 
 ## Task 1 — Define an independent, coupled aerospace engineering problem
 
@@ -18,7 +18,7 @@ The tasks are completed sequentially in the supplied source archive; the user is
 
 **Output:** `app.py` provides a Streamlit sidebar for 20+ adjustable flight/design/thermal/environment inputs, custom material parameters, diagnostic dashboard, comparison plots and downloadable files. Nothing has to be edited in Python to explore a new scenario.
 
-**Files:** `app.py`, `.streamlit/config.toml`, `data/example_scenarios.csv`, `data/example_results.csv`, `scripts/generate_demo.py`.
+**Files:** `app.py`, `data/example_scenarios.csv`, `data/example_results.csv`, `scripts/generate_demo.py`.
 
 ## Task 4 — Add comparison, design exploration and verification
 
@@ -28,10 +28,10 @@ The tasks are completed sequentially in the supplied source archive; the user is
 
 ## Task 5 — Package for reproducibility and public deployment
 
-**Output:** Installable dependency list, setup/hosting guide, clear repository layout, Git ignore rules, attribution/license and pre-filled sample scenarios. Archive structure is ready for extraction, local execution and pushing to a new GitHub repository.
+**Output:** Installable dependency list, setup/hosting guide, clear repository layout, Git ignore rules, attribution/license and pre-filled sample scenarios. The repository is published, the live application is deployed, and the code remains reproducible locally.
 
 **Files:** `requirements.txt`, `LICENSE`, `.gitignore`, `README.md`, `docs/DEPLOYMENT.md`.
 
 ## Definition of complete vs. not yet done
 
-The **implementation, tests, and local project archive** are complete. The actual personal GitHub repository and public Streamlit deployment are **not** created by this archive: the owner must sign in and publish them, then verify the app in a browser. The software does not claim professional certification or independent engineering validation; external benchmarking, verified material/footprint datasets and user feedback would improve its reliability.
+The **implementation, repository, tests and public website** are complete. The project owner confirmed the website is working on 14 October 2026. Automated checks validate software operation, not real-aircraft performance or scientific calibration. External benchmarks, verified environmental factors and independent review would improve the model's reliability.

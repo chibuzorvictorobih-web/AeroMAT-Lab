@@ -18,3 +18,10 @@ htmlcov/
 .env.*
 .DS_Store
 Thumbs.db
+
+# Private Streamlit settings and editor-specific local state
+.streamlit/secrets.toml
+.streamlit/secrets.*.toml
+.vscode/
+.idea/
+.ipynb_checkpoints/

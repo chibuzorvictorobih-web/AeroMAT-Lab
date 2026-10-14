@@ -1,63 +1,89 @@
-# Run and publish AeroMAT Lab (Windows / VS Code)
+# Running, updating and deploying AeroMAT Lab
 
-This is an independent aerospace engineering calculator. Upload the extracted **project files**, not the ZIP, to your GitHub repository.
+AeroMAT Lab is an independent educational engineering calculator. The project is
+already available as a [public GitHub repository](https://github.com/chibuzorvictorobih-web/AeroMAT-Lab)
+and a [live Streamlit app](https://aeromat-lab.streamlit.app/).
 
-## A — Run the local application
+## A — Run locally on Windows with VS Code
 
-1. Extract `aeromat-lab-independent.zip`. Open the newly extracted `aeromat-lab` folder in **VS Code → File → Open Folder**. Make sure `app.py` is visible at the top level.
-2. Open **Terminal → New Terminal** and enter `python --version`. Python 3.10+ is required.
-3. If this is a new folder, run the following commands **one at a time**, waiting for each to finish:
+1. Open your **clean local repository clone** in VS Code. The repository root contains
+   `app.py`, `aeromat/`, `tests/` and `requirements.txt`. If cloning afresh, use:
 
-```powershell
-python -m venv .venv
-.venv\Scripts\python.exe -m pip install -r requirements.txt
-.venv\Scripts\python.exe -m pytest -q
-.venv\Scripts\python.exe -m streamlit run app.py
-```
+   ```powershell
+   git clone https://github.com/chibuzorvictorobih-web/AeroMAT-Lab.git
+   cd AeroMAT-Lab
+   ```
 
-4. Open the local address printed by Streamlit, commonly `http://localhost:8501`. Change **Airspeed** or **Spar height** and check that outputs update. Explore all five tabs. Upload `data/example_scenarios.csv` in the **Batch CSV** tab.
-5. Stop Streamlit with **Ctrl + C** in the terminal when finished.
+2. With a Python 3.11 or 3.13 installation available, run commands individually:
 
-**Tip:** Your computer may have Python installed but not the `py` launcher; that is normal. The commands above use `python`. You do not need to activate `.venv` in PowerShell.
+   ```powershell
+   python -m venv .venv
+   .venv\Scripts\python.exe -m pip install -r requirements.txt
+   .venv\Scripts\python.exe -m pytest -q
+   .venv\Scripts\python.exe -m streamlit run app.py
+   ```
 
-## B — Create a GitHub repository
+3. Open the local Streamlit address displayed by your terminal. Adjust the airspeed
+   and material; examine the five tabs and export a sample result. Upload
+   `data/example_scenarios.csv` in the Batch CSV tab and verify that four rows
+   are processed successfully. Stop the app with **Ctrl+C**.
 
-1. Log in at [github.com](https://github.com/) and select **New repository**.
-2. Name the repository `aeromat-lab` and select Public or Private. Do not pre-create a README, license or `.gitignore`, because these exist in the folder.
-3. In VS Code's terminal, with `aeromat-lab` open, run these commands one at a time:
+## B — Update the existing GitHub repository safely
 
-```powershell
-git init
-git add .
-git commit -m "Publish standalone AeroMAT Lab calculator"
-git branch -M main
-git remote add origin https://github.com/YOUR-USERNAME/aeromat-lab.git
-git push -u origin main
-```
+**Do not initialize another repository or push an older project folder.** The published
+Git history was rebuilt to exclude previous local cache paths. Work from the current
+clean clone, rather than another folder that still contains old commits.
 
-Replace `YOUR-USERNAME` with your GitHub username. If an `origin` remote already exists, check it with `git remote -v` instead of adding it again. Git may ask you to set your name/email or sign in using the system browser. Never paste passwords or access tokens into the code or chat.
+1. In GitHub **Settings → Emails**, keep email privacy enabled, and use your own GitHub
+   `@users.noreply.github.com` address for local commits.
+2. In the clean clone, verify Git configuration before committing:
 
-4. Refresh the repository page. Ensure `app.py`, `aeromat/`, `tests/`, `docs/`, `.github/`, `.streamlit/` and `requirements.txt` are visible. `.venv` should **not** be uploaded. Review the **Actions** tab to see test results.
+   ```powershell
+   git status
+   git remote get-url origin
+   git branch --show-current
+   if ((git config --local user.email) -match '@users\.noreply\.github\.com$') { 'Email protected' } else { 'STOP: fix email configuration' }
+   ```
 
-## C — Deploy a public website with Streamlit
+3. Make only intended changes. Stage reviewed files, not local environment folders.
+   Run tests before publishing. After checking `git diff --cached`, use your own
+   meaningful commit message and push the `main` branch:
 
-1. Open [Streamlit Community Cloud](https://share.streamlit.io/) and sign in with GitHub.
-2. Choose to deploy a new app from your GitHub repository.
-3. Repository: `YOUR-USERNAME/aeromat-lab`. Branch: `main`. Main file: `app.py`.
-4. Deploy. Streamlit will install packages from `requirements.txt` and create a URL for your website.
-5. Test input recalculation, materials comparison, spar exploration, JSON/CSV downloads and batch upload on the deployed site.
+   ```powershell
+   git add README.md docs/DEPLOYMENT.md docs/DEVELOPMENT_TASKS.md docs/TEST_REPORT.md .gitignore
+   git diff --cached --stat
+   git commit -m 'Refresh project verification documents'
+   git push origin main
+   ```
 
-## D — Public presentation checklist
+4. Confirm the GitHub Actions workflow passes. Avoid uploading virtual environments,
+   local caches, API credentials, desktop settings, private files or screenshots
+   containing private local paths. The `.gitignore` covers common local artefacts,
+   but always review staged changes.
 
-- Put the actual app link in the repository's About section and `README.md`.
-- Check that screenshots do not reveal local file paths or private information.
-- Keep engineering assumptions and limitations visible; calculations are educational screening estimates, not certified designs.
-- Rerun tests after changes to equations or input handling.
-- Before publishing, search all project files for unwanted affiliations or outdated text.
+## C — Streamlit Community Cloud
+
+The live website is `https://aeromat-lab.streamlit.app/`. The existing deployment
+should use `chibuzorvictorobih-web/AeroMAT-Lab`, branch `main` and entrypoint `app.py`.
+If a repository recreation breaks the deployment, open your existing Streamlit
+Community Cloud app settings, inspect the source repository and branch, and reconnect
+or redeploy it from the same clean repository. Avoid creating duplicate apps unless
+necessary.
+
+## D — Release checks
+
+- Confirm the README and app links open, and the GitHub branch is `main`.
+- Ensure GitHub Actions shows successful Python 3.11 and 3.13 jobs for the new commit.
+- On a phone, check the layout, inputs and charts; browser rendering is not covered by AppTest.
+- Upload the bundled CSV, confirm four successful example rows, and download results.
+- Verify that no laptop paths, API keys, private email addresses, local config files
+  or unauthorized affiliation claims appear in tracked files and commit metadata.
+- Keep this project clearly labelled as a preliminary educational screening model;
+  do not claim aircraft certification, CFD/FEA, physical validation or a verified LCA.
 
 ## Troubleshooting
 
-- If the command `python` is missing, reinstall a supported Python version with command-line access configured, then restart VS Code.
-- If a package is missing, rerun the pip command using the explicit `.venv\Scripts\python.exe` path.
-- If `git` is not found, install Git for Windows, then reopen the terminal.
-- If port 8501 is busy, stop the previous Streamlit server with **Ctrl + C**, or use the new URL shown in the terminal.
+If Python is not on PATH, install a supported version and reopen VS Code. If a package
+is missing, repeat the install command within `.venv`. If Git authentication fails,
+check that you are signed into the correct GitHub account. If a Streamlit port is busy,
+stop the previous process or open the different address printed by the server.
